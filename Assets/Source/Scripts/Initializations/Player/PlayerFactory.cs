@@ -21,7 +21,7 @@ namespace TaskIvan.Initializations.Player
 		{
 			var playerEntity = Object.Instantiate(_data.PlayerPrefab, init.SpawnPosition, Quaternion.identity);
 
-			_moveService = new PlayerMoveService(init.InputService, playerEntity);
+			_moveService = new PlayerMoveService(init.InputService, playerEntity, _data);
 			
 			return playerEntity;
 		}

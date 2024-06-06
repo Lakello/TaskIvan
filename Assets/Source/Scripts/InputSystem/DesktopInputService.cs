@@ -12,7 +12,7 @@ namespace TaskIvan.InputSystem
 		private readonly PlayerInput _playerInput;
 		private readonly Coroutine _updateInputCoroutine;
 
-		public event Action<Vector3> Moving;
+		public event Action<Vector2> Moving;
 		public event Action Jumping;
 			
 		public DesktopInputService(MonoBehaviour mono)
@@ -51,7 +51,7 @@ namespace TaskIvan.InputSystem
 				horizontal = _playerInput.Player.Horizontal.ReadValue<float>();
 				vertical = _playerInput.Player.Vertical.ReadValue<float>();
 				
-				Moving?.Invoke(new Vector3(horizontal, 0, vertical));
+				Moving?.Invoke(new Vector2(horizontal, vertical));
 
 				yield return null;
 			}
