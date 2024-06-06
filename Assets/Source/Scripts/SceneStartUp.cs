@@ -1,4 +1,5 @@
 using System;
+using TaskIvan.CameraSystem.Services;
 using TaskIvan.Extensions;
 using TaskIvan.Initializations.Player;
 using TaskIvan.InputSystem;
@@ -21,10 +22,12 @@ namespace TaskIvan
 
 			var playerFactory = new PlayerFactory(_playerData);
 			var playerEntity = playerFactory.Create(new PlayerInit(_spawnPoint.transform.position, inputService));
+
+			var cameraControlService = new CameraControlService(inputService, playerEntity, _playerData);
 			
 			_disposables = new IDisposable[]
 			{
-				inputService, playerFactory
+				inputService, playerFactory, cameraControlService
 			};
 		}
 

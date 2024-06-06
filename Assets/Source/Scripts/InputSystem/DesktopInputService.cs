@@ -48,11 +48,13 @@ namespace TaskIvan.InputSystem
 
 		private IEnumerator UpdateInput()
 		{
+			var wait = new WaitForFixedUpdate();
+			
 			while (_mono.enabled)
 			{
 				Moving?.Invoke(_playerInput.KeyboardAndMouse.Move.ReadValue<Vector2>());
 
-				yield return null;
+				yield return wait;
 			}
 		}
 	}

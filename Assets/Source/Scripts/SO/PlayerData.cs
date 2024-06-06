@@ -13,6 +13,8 @@ namespace TaskIvan.SO
 		[SerializeField] [Range(0, 100)] private float _jumpRotateSpeed;
 		[SerializeField] [Range(0, 100)] private float _mouseHorizontalSensitivity;
 		[SerializeField] [Range(0, 100)] private float _mouseVerticalSensitivity;
+		[SerializeField] private Vector3 _cameraOffset;
+		[SerializeField] private float _cameraMoveLag;
 		
 		public PlayerEntity PlayerPrefab => _playerPrefab;
 		public float MoveSpeed => _moveSpeed;
@@ -21,5 +23,7 @@ namespace TaskIvan.SO
 		public float JumpRotateSpeed => _jumpRotateSpeed;
 		public float MouseHorizontalSensitivity => _mouseHorizontalSensitivity;
 		public float MouseVerticalSensitivity => _mouseVerticalSensitivity;
+		public Vector3 CameraOffset => _cameraOffset;
+		public float CameraMoveLag => _cameraMoveLag;
 	}
 }

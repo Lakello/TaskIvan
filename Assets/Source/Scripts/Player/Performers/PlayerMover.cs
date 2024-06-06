@@ -20,7 +20,7 @@ namespace TaskIvan.Player
 			var moveDirection = (playerTransform.forward * direction.y) + (playerTransform.right * direction.x);
 			
 			_playerEntity.SelfRigidbody.MovePosition(
-				_playerEntity.SelfRigidbody.position + (moveDirection * _data.MoveSpeed * Time.deltaTime));
+				_playerEntity.SelfRigidbody.position + (moveDirection * _data.MoveSpeed * Time.fixedDeltaTime));
 		}
 	}
 }

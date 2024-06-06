@@ -17,5 +17,7 @@ MonoBehaviour:
   _rotateSpeed: 5
   _jumpForce: 5
   _jumpRotateSpeed: 5
-  _mouseHorizontalSensitivity: 5
-  _mouseVerticalSensitivity: 5
+  _mouseHorizontalSensitivity: 1
+  _mouseVerticalSensitivity: 1
+  _cameraOffset: {x: 0, y: 5, z: -10}
+  _cameraMoveLag: 5
