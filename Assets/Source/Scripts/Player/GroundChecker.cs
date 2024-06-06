@@ -1,3 +1,4 @@
+using TaskIvan.Extensions;
 using UnityEngine;
 
 namespace TaskIvan.Player
@@ -25,7 +26,19 @@ namespace TaskIvan.Player
 				_hits,
 				CheckDistance);
 
-			return count > 1;
+			if (count > 0)
+			{
+				foreach (var hit in _hits)
+				{
+					if (hit.transform == null)
+						continue;
+
+					if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
+						return true;
+				}
+			}
+
+			return false;
 		}
 	}
 }

@@ -15,7 +15,8 @@ MonoBehaviour:
   _playerPrefab: {fileID: 1840133869846164195, guid: ad1e4320e81a592469ee586ad135162b, type: 3}
   _moveSpeed: 5
   _jumpForce: 25
-  _jumpRotateSpeed: 5
+  _somersaultDuration: 0.5
+  _maxJumpCount: 2
   _mouseHorizontalSensitivity: 39.9
   _mouseVerticalSensitivity: 21.8
   _cameraHeight: 5

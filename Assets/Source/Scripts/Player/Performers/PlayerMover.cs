@@ -1,3 +1,4 @@
+using TaskIvan.BonusSystem.Entities;
 using TaskIvan.SO;
 using UnityEngine;
 
@@ -14,13 +15,16 @@ namespace TaskIvan.Player
 			_data = data;
 		}
 
-		public void Move(Vector2 direction)
+		public void Move(Vector2 direction, SpeedBonus speedBonus)
 		{
 			var playerTransform = _playerEntity.transform;
 			var moveDirection = (playerTransform.forward * direction.y) + (playerTransform.right * direction.x);
+
+			var multiplier = speedBonus == null ? 1 : speedBonus.Multiplier;
 			
 			_playerEntity.SelfRigidbody.MovePosition(
-				_playerEntity.SelfRigidbody.position + (moveDirection * _data.MoveSpeed * Time.fixedDeltaTime));
+				_playerEntity.SelfRigidbody.position + 
+				(moveDirection * _data.MoveSpeed * multiplier * Time.fixedDeltaTime));
 		}
 	}
 }

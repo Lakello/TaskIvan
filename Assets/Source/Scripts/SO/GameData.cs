@@ -12,7 +12,8 @@ namespace TaskIvan.SO
 		[Header("Control")]
 		[SerializeField] [Range(0, 100)] private float _moveSpeed;
 		[SerializeField] [Range(0, 100)] private float _jumpForce;
- 		[SerializeField] [Range(0, 100)] private float _jumpRotateSpeed;
+ 		[SerializeField] [Range(0, 100)] private float _somersaultDuration;
+	    [SerializeField] [Range(0, 100)] private int _maxJumpCount;
 		[Space(10)]
 		[Header("Camera")]
 		[SerializeField] [Range(0, 100)] private float _mouseHorizontalSensitivity;
@@ -23,12 +24,13 @@ namespace TaskIvan.SO
 		
 		public PlayerEntity PlayerPrefab => _playerPrefab;
 		public float MoveSpeed => _moveSpeed;
-		public float JumpRotateSpeed => _jumpRotateSpeed;
+		public float SomersaultDuration => _somersaultDuration;
 		public float MouseHorizontalSensitivity => _mouseHorizontalSensitivity;
 		public float MouseVerticalSensitivity => _mouseVerticalSensitivity;
 		public float CameraHeight => _cameraHeight;
 		public Vector2 MinMaxVerticalCameraAngle => _minMaxVerticalCameraAngle;
 		public float CameraDistance => _cameraDistance;
 		public float JumpForce => _jumpForce;
+		public int MaxJumpCount => _maxJumpCount;
 	}
 }

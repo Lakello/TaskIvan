@@ -1,4 +1,5 @@
 using System;
+using TaskIvan.BonusSystem.Services;
 using TaskIvan.Player;
 using TaskIvan.SO;
 using UnityEngine;
@@ -21,7 +22,8 @@ namespace TaskIvan.Initializations.Player
 		{
 			var playerEntity = Object.Instantiate(_data.PlayerPrefab, init.SpawnPosition, Quaternion.identity);
 
-			_controlService = new PlayerControlService(init.InputService, playerEntity, _data, mainCamera);
+			var bonusService = new BonusService(playerEntity);
+			_controlService = new PlayerControlService(init.InputService, playerEntity, _data, mainCamera, bonusService);
 			
 			return playerEntity;
 		}
