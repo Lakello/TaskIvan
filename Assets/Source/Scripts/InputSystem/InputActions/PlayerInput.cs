@@ -26,27 +26,9 @@ namespace TaskIvan.InputSystem.Actions
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""KeyboardAndMouse"",
             ""id"": ""85ea770e-c250-4a3a-a686-9ee5ebd07da1"",
             ""actions"": [
-                {
-                    ""name"": ""Horizontal"",
-                    ""type"": ""Value"",
-                    ""id"": ""401ed931-036d-470a-a11c-2dfa5673f5b3"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Vertical"",
-                    ""type"": ""Value"",
-                    ""id"": ""f09a26fa-0f69-447f-b9c8-23aeb135ca46"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
                 {
                     ""name"": ""Jump"",
                     ""type"": ""Value"",
@@ -55,75 +37,27 @@ namespace TaskIvan.InputSystem.Actions
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MouseDelta"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""605f034d-1eb5-4657-a70c-ea3879551216"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""89bd4423-4984-4808-9427-ebfdf6eca605"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""29a051fb-01ae-41e9-b492-729f5aaa0283"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Horizontal"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""923239f2-bf9d-4ad5-becd-d3fcc06d3c50"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Desktop"",
-                    ""action"": ""Horizontal"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""694e426d-4aa8-4a81-811f-fa79c1c61982"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Desktop"",
-                    ""action"": ""Horizontal"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""3677c552-08ae-40e4-9723-910dd1e82891"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Vertical"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""3dc0f90a-65ef-4d03-a2bf-5ba1a7bb0c0f"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Desktop"",
-                    ""action"": ""Vertical"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""4a68bc45-d12d-4d17-9736-a8551d6fedf7"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Desktop"",
-                    ""action"": ""Vertical"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
                 {
                     ""name"": """",
                     ""id"": ""1a5d1f2c-4b69-4285-9af4-10cd78786a9b"",
@@ -134,6 +68,72 @@ namespace TaskIvan.InputSystem.Actions
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""585e0563-f3fb-4f67-9570-8986f4c7712d"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""MouseDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""459f60e0-c8a8-4600-8194-59625dce4caf"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""dce52d9c-981c-48c2-afd9-280f2dbbcac3"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d5aa3dae-cefb-4d67-8754-67d60d533cfd"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""30d75fe0-1d96-4a94-8729-13ce905cb4f3"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""77b1ade9-caa9-40c8-9fa3-19fdb586048d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -146,11 +146,11 @@ namespace TaskIvan.InputSystem.Actions
         }
     ]
 }");
-            // Player
-            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-            m_Player_Horizontal = m_Player.FindAction("Horizontal", throwIfNotFound: true);
-            m_Player_Vertical = m_Player.FindAction("Vertical", throwIfNotFound: true);
-            m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+            // KeyboardAndMouse
+            m_KeyboardAndMouse = asset.FindActionMap("KeyboardAndMouse", throwIfNotFound: true);
+            m_KeyboardAndMouse_Jump = m_KeyboardAndMouse.FindAction("Jump", throwIfNotFound: true);
+            m_KeyboardAndMouse_MouseDelta = m_KeyboardAndMouse.FindAction("MouseDelta", throwIfNotFound: true);
+            m_KeyboardAndMouse_Move = m_KeyboardAndMouse.FindAction("Move", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -209,67 +209,67 @@ namespace TaskIvan.InputSystem.Actions
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // Player
-        private readonly InputActionMap m_Player;
-        private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-        private readonly InputAction m_Player_Horizontal;
-        private readonly InputAction m_Player_Vertical;
-        private readonly InputAction m_Player_Jump;
-        public struct PlayerActions
+        // KeyboardAndMouse
+        private readonly InputActionMap m_KeyboardAndMouse;
+        private List<IKeyboardAndMouseActions> m_KeyboardAndMouseActionsCallbackInterfaces = new List<IKeyboardAndMouseActions>();
+        private readonly InputAction m_KeyboardAndMouse_Jump;
+        private readonly InputAction m_KeyboardAndMouse_MouseDelta;
+        private readonly InputAction m_KeyboardAndMouse_Move;
+        public struct KeyboardAndMouseActions
         {
             private @PlayerInput m_Wrapper;
-            public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Horizontal => m_Wrapper.m_Player_Horizontal;
-            public InputAction @Vertical => m_Wrapper.m_Player_Vertical;
-            public InputAction @Jump => m_Wrapper.m_Player_Jump;
-            public InputActionMap Get() { return m_Wrapper.m_Player; }
+            public KeyboardAndMouseActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Jump => m_Wrapper.m_KeyboardAndMouse_Jump;
+            public InputAction @MouseDelta => m_Wrapper.m_KeyboardAndMouse_MouseDelta;
+            public InputAction @Move => m_Wrapper.m_KeyboardAndMouse_Move;
+            public InputActionMap Get() { return m_Wrapper.m_KeyboardAndMouse; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-            public void AddCallbacks(IPlayerActions instance)
+            public static implicit operator InputActionMap(KeyboardAndMouseActions set) { return set.Get(); }
+            public void AddCallbacks(IKeyboardAndMouseActions instance)
             {
-                if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-                @Horizontal.started += instance.OnHorizontal;
-                @Horizontal.performed += instance.OnHorizontal;
-                @Horizontal.canceled += instance.OnHorizontal;
-                @Vertical.started += instance.OnVertical;
-                @Vertical.performed += instance.OnVertical;
-                @Vertical.canceled += instance.OnVertical;
+                if (instance == null || m_Wrapper.m_KeyboardAndMouseActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_KeyboardAndMouseActionsCallbackInterfaces.Add(instance);
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @MouseDelta.started += instance.OnMouseDelta;
+                @MouseDelta.performed += instance.OnMouseDelta;
+                @MouseDelta.canceled += instance.OnMouseDelta;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
             }
 
-            private void UnregisterCallbacks(IPlayerActions instance)
+            private void UnregisterCallbacks(IKeyboardAndMouseActions instance)
             {
-                @Horizontal.started -= instance.OnHorizontal;
-                @Horizontal.performed -= instance.OnHorizontal;
-                @Horizontal.canceled -= instance.OnHorizontal;
-                @Vertical.started -= instance.OnVertical;
-                @Vertical.performed -= instance.OnVertical;
-                @Vertical.canceled -= instance.OnVertical;
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
+                @MouseDelta.started -= instance.OnMouseDelta;
+                @MouseDelta.performed -= instance.OnMouseDelta;
+                @MouseDelta.canceled -= instance.OnMouseDelta;
+                @Move.started -= instance.OnMove;
+                @Move.performed -= instance.OnMove;
+                @Move.canceled -= instance.OnMove;
             }
 
-            public void RemoveCallbacks(IPlayerActions instance)
+            public void RemoveCallbacks(IKeyboardAndMouseActions instance)
             {
-                if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_KeyboardAndMouseActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(IPlayerActions instance)
+            public void SetCallbacks(IKeyboardAndMouseActions instance)
             {
-                foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_KeyboardAndMouseActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_KeyboardAndMouseActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public PlayerActions @Player => new PlayerActions(this);
+        public KeyboardAndMouseActions @KeyboardAndMouse => new KeyboardAndMouseActions(this);
         private int m_DesktopSchemeIndex = -1;
         public InputControlScheme DesktopScheme
         {
@@ -279,11 +279,11 @@ namespace TaskIvan.InputSystem.Actions
                 return asset.controlSchemes[m_DesktopSchemeIndex];
             }
         }
-        public interface IPlayerActions
+        public interface IKeyboardAndMouseActions
         {
-            void OnHorizontal(InputAction.CallbackContext context);
-            void OnVertical(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
+            void OnMouseDelta(InputAction.CallbackContext context);
+            void OnMove(InputAction.CallbackContext context);
         }
     }
 }

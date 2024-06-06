@@ -10,7 +10,7 @@ namespace TaskIvan.Initializations.Player
 	{
 		private readonly PlayerData _data;
 
-		private PlayerMoveService _moveService;
+		private PlayerControlService _controlService;
 
 		public PlayerFactory(PlayerData data)
 		{
@@ -21,14 +21,14 @@ namespace TaskIvan.Initializations.Player
 		{
 			var playerEntity = Object.Instantiate(_data.PlayerPrefab, init.SpawnPosition, Quaternion.identity);
 
-			_moveService = new PlayerMoveService(init.InputService, playerEntity, _data);
+			_controlService = new PlayerControlService(init.InputService, playerEntity, _data);
 			
 			return playerEntity;
 		}
 
 		public void Dispose()
 		{
-			_moveService.Dispose();
+			_controlService.Dispose();
 		}
 	}
 }

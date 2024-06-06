@@ -13,6 +13,7 @@ namespace TaskIvan.InputSystem
 		private readonly Coroutine _updateInputCoroutine;
 
 		public event Action<Vector2> Moving;
+		public event Action<Vector2> MouseMoving;
 		public event Action Jumping;
 			
 		public DesktopInputService(MonoBehaviour mono)
@@ -22,10 +23,14 @@ namespace TaskIvan.InputSystem
 			_playerInput = new PlayerInput();
 			_playerInput.Enable();
 
-			_playerInput.Player.Jump.performed += OnJumpPerformed;
+			_playerInput.KeyboardAndMouse.Jump.performed += OnJumpPerformed;
+			_playerInput.KeyboardAndMouse.MouseDelta.performed += OnMouseDeltaPerformed;
 
 			_updateInputCoroutine = _mono.StartCoroutine(UpdateInput());
 		}
+
+		private void OnMouseDeltaPerformed(InputAction.CallbackContext context) =>
+			MouseMoving?.Invoke(context.ReadValue<Vector2>());
 
 		private void OnJumpPerformed(InputAction.CallbackContext _) =>
 			Jumping?.Invoke();
@@ -35,7 +40,7 @@ namespace TaskIvan.InputSystem
 			if (_playerInput != null)
 			{
 				_playerInput.Dispose();
-				_playerInput.Player.Jump.performed -= OnJumpPerformed;
+				_playerInput.KeyboardAndMouse.Jump.performed -= OnJumpPerformed;
 			}
 			
 			_mono.StopCoroutine(_updateInputCoroutine);
@@ -43,15 +48,9 @@ namespace TaskIvan.InputSystem
 
 		private IEnumerator UpdateInput()
 		{
-			float horizontal;
-			float vertical;
-
 			while (_mono.enabled)
 			{
-				horizontal = _playerInput.Player.Horizontal.ReadValue<float>();
-				vertical = _playerInput.Player.Vertical.ReadValue<float>();
-				
-				Moving?.Invoke(new Vector2(horizontal, vertical));
+				Moving?.Invoke(_playerInput.KeyboardAndMouse.Move.ReadValue<Vector2>());
 
 				yield return null;
 			}
