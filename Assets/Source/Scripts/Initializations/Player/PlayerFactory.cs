@@ -8,11 +8,11 @@ namespace TaskIvan.Initializations.Player
 {
 	public class PlayerFactory : IDisposable
 	{
-		private readonly PlayerData _data;
+		private readonly GameData _data;
 
 		private PlayerControlService _controlService;
 
-		public PlayerFactory(PlayerData data)
+		public PlayerFactory(GameData data)
 		{
 			_data = data;
 		}

@@ -14,12 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 1840133869846164195, guid: ad1e4320e81a592469ee586ad135162b, type: 3}
   _moveSpeed: 5
-  _jumpForce: 5
+  _jumpForce: 25
   _jumpRotateSpeed: 5
-  _mouseHorizontalSensitivity: 9
-  _mouseVerticalSensitivity: 8.5
+  _mouseHorizontalSensitivity: 39.9
+  _mouseVerticalSensitivity: 21.8
   _cameraHeight: 5
   _cameraDistance: 15
-  _cameraMoveLag: 5
-  _cameraRotateSpeed: 2
   _minMaxVerticalCameraAngle: {x: -3, y: 20}

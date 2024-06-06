@@ -5,6 +5,7 @@ using TaskIvan.Initializations.Player;
 using TaskIvan.InputSystem;
 using TaskIvan.Level.Entities;
 using TaskIvan.SO;
+using TaskIvan.Utils;
 using UnityEngine;
 
 namespace TaskIvan
@@ -12,7 +13,7 @@ namespace TaskIvan
 	public class SceneStartUp : MonoBehaviour
 	{
 		[SerializeField] private SpawnPoint _spawnPoint;
-		[SerializeField] private PlayerData _playerData;
+		[SerializeField] private GameData _gameData;
 		
 		private IDisposable[] _disposables;
 		
@@ -20,21 +21,22 @@ namespace TaskIvan
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
+
+			_ = new GameObject(nameof(CoroutineHolder)).AddComponent<CoroutineHolder>();
 			
 			var mainCamera = Camera.main;
 
 			var inputService = new DesktopInputService(this);
 
-			var playerFactory = new PlayerFactory(_playerData);
+			var playerFactory = new PlayerFactory(_gameData);
 			var playerEntity = playerFactory.Create(new PlayerInit(_spawnPoint.transform.position, inputService), mainCamera);
 			
 			var cameraPoint = new GameObject(nameof(CameraPoint)).AddComponent<CameraPoint>();
 			mainCamera.transform.SetParent(cameraPoint.transform);
 			mainCamera.transform.position = 
-				cameraPoint.transform.position + new Vector3(0, _playerData.CameraHeight, -_playerData.CameraDistance);
-			cameraPoint.Init(playerEntity);
+				cameraPoint.transform.position + new Vector3(0, _gameData.CameraHeight, -_gameData.CameraDistance);
 
-			var cameraControlService = new CameraControlService(inputService, _playerData, cameraPoint);
+			var cameraControlService = new CameraControlService(inputService, playerEntity, _gameData, cameraPoint);
 			
 			_disposables = new IDisposable[]
 			{

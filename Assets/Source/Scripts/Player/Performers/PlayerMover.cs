@@ -6,9 +6,9 @@ namespace TaskIvan.Player
 	public class PlayerMover
 	{
 		private readonly PlayerEntity _playerEntity;
-		private readonly PlayerData _data;
+		private readonly GameData _data;
 
-		public PlayerMover(PlayerEntity playerEntity, PlayerData data)
+		public PlayerMover(PlayerEntity playerEntity, GameData data)
 		{
 			_playerEntity = playerEntity;
 			_data = data;

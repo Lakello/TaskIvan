@@ -1353,7 +1353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 1763101395}
-  _playerData: {fileID: 11400000, guid: 00c20fdf15ea83348ad61fda505b1011, type: 2}
+  _gameData: {fileID: 11400000, guid: 00c20fdf15ea83348ad61fda505b1011, type: 2}
 --- !u!4 &1359491462
 Transform:
   m_ObjectHideFlags: 0

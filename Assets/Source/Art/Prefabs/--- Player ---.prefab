@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6351465625670926095}
   - component: {fileID: 6130978901016615874}
   - component: {fileID: 4601409842012224876}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7813114211245579927}
   - component: {fileID: 4510384620728818787}
   - component: {fileID: 6669096940125594805}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 68483182820684829}
   - component: {fileID: 1133953222449200904}
   - component: {fileID: 4431266149860127547}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 8272110150492100594}
   - component: {fileID: 6696068935233469868}
   - component: {fileID: 3837515300246672648}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ForwardPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 3823803075109644697}
   - component: {fileID: 1840133869846164195}
   - component: {fileID: 1305614404653237883}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: --- Player ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}

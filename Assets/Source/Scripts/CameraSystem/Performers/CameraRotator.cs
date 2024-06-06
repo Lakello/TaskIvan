@@ -8,14 +8,14 @@ namespace TaskIvan.CameraSystem.Performers
 {
 	public class CameraRotator
 	{
-		private readonly PlayerData _data;
+		private readonly GameData _data;
 		private readonly CameraPoint _cameraPoint;
 		private readonly float _rotateAngle;
 
 		private float _vertical;
 		private float _horizontal;
 
-		public CameraRotator(PlayerData data, CameraPoint cameraPoint)
+		public CameraRotator(GameData data, CameraPoint cameraPoint)
 		{
 			_data = data;
 			_cameraPoint = cameraPoint;
