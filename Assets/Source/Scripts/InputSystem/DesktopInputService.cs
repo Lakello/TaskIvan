@@ -10,7 +10,8 @@ namespace TaskIvan.InputSystem
 	{
 		private readonly MonoBehaviour _mono;
 		private readonly PlayerInput _playerInput;
-		private readonly Coroutine _updateInputCoroutine;
+		private readonly Coroutine _updateInputMoveCoroutine;
+		private readonly Coroutine _updateInputMouseCoroutine;
 
 		public event Action<Vector2> Moving;
 		public event Action<Vector2> MouseMoving;
@@ -24,13 +25,15 @@ namespace TaskIvan.InputSystem
 			_playerInput.Enable();
 
 			_playerInput.KeyboardAndMouse.Jump.performed += OnJumpPerformed;
-			_playerInput.KeyboardAndMouse.MouseDelta.performed += OnMouseDeltaPerformed;
+			
+			var wait = new WaitForFixedUpdate();
+			_updateInputMoveCoroutine = _mono.StartCoroutine(UpdateInput(
+				() => Moving?.Invoke(_playerInput.KeyboardAndMouse.Move.ReadValue<Vector2>()),
+				wait));
 
-			_updateInputCoroutine = _mono.StartCoroutine(UpdateInput());
+			_updateInputMouseCoroutine = _mono.StartCoroutine(UpdateInput(
+				() => MouseMoving?.Invoke(_playerInput.KeyboardAndMouse.MouseDelta.ReadValue<Vector2>())));
 		}
-
-		private void OnMouseDeltaPerformed(InputAction.CallbackContext context) =>
-			MouseMoving?.Invoke(context.ReadValue<Vector2>());
 
 		private void OnJumpPerformed(InputAction.CallbackContext _) =>
 			Jumping?.Invoke();
@@ -43,18 +46,17 @@ namespace TaskIvan.InputSystem
 				_playerInput.KeyboardAndMouse.Jump.performed -= OnJumpPerformed;
 			}
 			
-			_mono.StopCoroutine(_updateInputCoroutine);
+			_mono.StopCoroutine(_updateInputMoveCoroutine);
+			_mono.StopCoroutine(_updateInputMouseCoroutine);
 		}
-
-		private IEnumerator UpdateInput()
+		
+		private IEnumerator UpdateInput(Action action, YieldInstruction instruction = null)
 		{
-			var wait = new WaitForFixedUpdate();
-			
 			while (_mono.enabled)
 			{
-				Moving?.Invoke(_playerInput.KeyboardAndMouse.Move.ReadValue<Vector2>());
-
-				yield return wait;
+				action.Invoke();
+				
+				yield return instruction;
 			}
 		}
 	}

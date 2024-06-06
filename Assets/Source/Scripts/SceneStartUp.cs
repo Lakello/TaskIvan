@@ -18,12 +18,23 @@ namespace TaskIvan
 		
 		private void Awake()
 		{
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+			
+			var mainCamera = Camera.main;
+
 			var inputService = new DesktopInputService(this);
 
 			var playerFactory = new PlayerFactory(_playerData);
-			var playerEntity = playerFactory.Create(new PlayerInit(_spawnPoint.transform.position, inputService));
+			var playerEntity = playerFactory.Create(new PlayerInit(_spawnPoint.transform.position, inputService), mainCamera);
+			
+			var cameraPoint = new GameObject(nameof(CameraPoint)).AddComponent<CameraPoint>();
+			mainCamera.transform.SetParent(cameraPoint.transform);
+			mainCamera.transform.position = 
+				cameraPoint.transform.position + new Vector3(0, _playerData.CameraHeight, -_playerData.CameraDistance);
+			cameraPoint.Init(playerEntity);
 
-			var cameraControlService = new CameraControlService(inputService, playerEntity, _playerData);
+			var cameraControlService = new CameraControlService(inputService, _playerData, cameraPoint);
 			
 			_disposables = new IDisposable[]
 			{

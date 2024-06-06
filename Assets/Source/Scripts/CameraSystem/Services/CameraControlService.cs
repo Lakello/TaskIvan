@@ -1,6 +1,7 @@
 using System;
+using TaskIvan.CameraSystem.Performers;
 using TaskIvan.InputSystem;
-using TaskIvan.Player;
+using TaskIvan.Level.Entities;
 using TaskIvan.SO;
 using UnityEngine;
 
@@ -9,30 +10,28 @@ namespace TaskIvan.CameraSystem.Services
 	public class CameraControlService : IDisposable
 	{
 		private readonly IInputService _inputService;
-		private readonly PlayerEntity _playerEntity;
-		private readonly PlayerData _data;
-		private readonly Camera _mainCamera;
+		private readonly CameraPoint _cameraPoint;
+		private readonly CameraRotator _rotator;
 
-		public CameraControlService(IInputService inputService, PlayerEntity playerEntity, PlayerData data)
+		public CameraControlService(
+			IInputService inputService,
+			PlayerData data,
+			CameraPoint cameraPoint)
 		{
 			_inputService = inputService;
-			_playerEntity = playerEntity;
-			_data = data;
-			_mainCamera = Camera.main;
-
+			_cameraPoint = cameraPoint;
+			_rotator = new CameraRotator(data, cameraPoint);
 			_inputService.Moving += OnMoving;
+			_inputService.MouseMoving += OnMouseMoving;
 		}
 
-		public void Dispose()
-		{
-			_inputService.MouseMoving -= OnMoving;
-		}
+		public void Dispose() =>
+			_inputService.MouseMoving -= OnMouseMoving;
 
-		private void OnMoving(Vector2 _)
-		{
-			var newPosition = _playerEntity.SelfRigidbody.position + _data.CameraOffset;
-			_mainCamera.transform.position = 
-				Vector3.Lerp(_mainCamera.transform.position, newPosition, _data.CameraMoveLag * Time.fixedDeltaTime);
-		}
+		private void OnMouseMoving(Vector2 delta) =>
+			_rotator.Rotate(delta);
+
+		private void OnMoving(Vector2 _) =>
+			_cameraPoint.Move();
 	}
 }

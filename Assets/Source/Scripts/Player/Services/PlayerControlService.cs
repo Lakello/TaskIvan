@@ -11,12 +11,12 @@ namespace TaskIvan.Player
 		private readonly PlayerMover _mover;
 		private readonly PlayerRotator _rotator;
 
-		public PlayerControlService(IInputService inputService, PlayerEntity playerEntity, PlayerData data)
+		public PlayerControlService(IInputService inputService, PlayerEntity playerEntity, PlayerData data, Camera mainCamera)
 		{
 			_inputService = inputService;
 
 			_mover = new PlayerMover(playerEntity, data);
-			_rotator = new PlayerRotator(playerEntity, data);
+			_rotator = new PlayerRotator(playerEntity, mainCamera);
 
 			_inputService.Moving += OnMoving;
 		}

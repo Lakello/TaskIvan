@@ -17,11 +17,11 @@ namespace TaskIvan.Initializations.Player
 			_data = data;
 		}
 
-		public PlayerEntity Create(PlayerInit init)
+		public PlayerEntity Create(PlayerInit init, Camera mainCamera)
 		{
 			var playerEntity = Object.Instantiate(_data.PlayerPrefab, init.SpawnPosition, Quaternion.identity);
 
-			_controlService = new PlayerControlService(init.InputService, playerEntity, _data);
+			_controlService = new PlayerControlService(init.InputService, playerEntity, _data, mainCamera);
 			
 			return playerEntity;
 		}
