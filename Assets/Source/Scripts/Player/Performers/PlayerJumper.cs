@@ -76,7 +76,7 @@ namespace TaskIvan.Player
 			_playerEntity.SelfRigidbody.AddForce(Vector3.up * _data.JumpForce, ForceMode.Impulse);
 
 			_somersaultTweener = _playerCollider.transform
-				.DOLocalRotate(new Vector3(360, 0, 0), 
+				.DOLocalRotate(new Vector3(360, 0, 0),
 					_data.SomersaultDuration,
 					RotateMode.FastBeyond360)
 				.OnKill(() => _playerCollider.transform.Rotate(new Vector3(0, 0, 0)));

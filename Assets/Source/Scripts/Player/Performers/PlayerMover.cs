@@ -15,16 +15,20 @@ namespace TaskIvan.Player
 			_data = data;
 		}
 
+		public float CurrentSpeed { get; private set; }
+
 		public void Move(Vector2 direction, SpeedBonus speedBonus)
 		{
 			var playerTransform = _playerEntity.transform;
 			var moveDirection = (playerTransform.forward * direction.y) + (playerTransform.right * direction.x);
 
 			var multiplier = speedBonus == null ? 1 : speedBonus.Multiplier;
+
+			CurrentSpeed = _data.MoveSpeed * multiplier;
 			
 			_playerEntity.SelfRigidbody.MovePosition(
 				_playerEntity.SelfRigidbody.position + 
-				(moveDirection * _data.MoveSpeed * multiplier * Time.fixedDeltaTime));
+				(moveDirection * CurrentSpeed * Time.fixedDeltaTime));
 		}
 	}
 }
