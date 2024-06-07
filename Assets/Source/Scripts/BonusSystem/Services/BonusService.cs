@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TaskIvan.BonusSystem.Entities;
 using TaskIvan.Player;
-using TaskIvan.Utils;
+using UniRx;
 using UnityEngine;
 
 namespace TaskIvan.BonusSystem.Services
 {
 	public class BonusService : IDisposable
 	{
-		private readonly Dictionary<Type, (Bonus, Coroutine)> _bonuses = new Dictionary<Type, (Bonus, Coroutine)>();
+		private readonly Dictionary<Type, (Bonus, IDisposable)> _bonuses = new Dictionary<Type, (Bonus, IDisposable)>();
 		private readonly BonusCollector _bonusCollector;
 
 		public BonusService(PlayerEntity playerEntity)
@@ -42,16 +42,16 @@ namespace TaskIvan.BonusSystem.Services
 
 			if (_bonuses.ContainsKey(bonus.GetType()))
 			{
-				var effectCoroutine = _bonuses[bonus.GetType()].Item2;
-				CoroutineHolder.Instance.Stop(effectCoroutine);
-				_bonuses[bonus.GetType()] = (bonus, CoroutineHolder.Instance.Play(PlayEffect(bonus)));
+				var effectDisposable = _bonuses[bonus.GetType()].Item2;
+				effectDisposable.Dispose();
+				_bonuses[bonus.GetType()] = (bonus, Observable.FromCoroutine(() => PlayEffect(bonus)).Subscribe());
 			}
 			else
 			{
-				_bonuses.Add(bonus.GetType(), (bonus, CoroutineHolder.Instance.Play(PlayEffect(bonus))));
+				_bonuses.Add(bonus.GetType(), (bonus, Observable.FromCoroutine(() => PlayEffect(bonus)).Subscribe()));
 			}
 
-			CoroutineHolder.Instance.Play(BonusCooldown(bonus));
+			Observable.FromCoroutine(() => BonusCooldown(bonus));
 		}
 
 		private IEnumerator PlayEffect(Bonus bonus)

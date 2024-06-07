@@ -1,4 +1,3 @@
-using TaskIvan.Utils;
 using UnityEngine;
 
 namespace TaskIvan.Player
@@ -16,10 +15,13 @@ namespace TaskIvan.Player
 
 		public void Rotate()
 		{
-			_playerEntity.SelfRigidbody.MoveRotation(RotateCalculator.CalculateRotationToTarget(
-				_playerEntity.SelfRigidbody.position,
-				_mainCamera.transform.position,
-				Vector3.back));
+			var offset = _playerEntity.SelfRigidbody.position - _mainCamera.transform.position;
+			offset.Set(offset.x, 0, offset.z);
+
+			var targetRotation =
+				Quaternion.Euler(0f, Vector3.SignedAngle(Vector3.forward, offset, Vector3.up), 0f);
+
+			_playerEntity.SelfRigidbody.MoveRotation(targetRotation);
 		}
 	}
 }

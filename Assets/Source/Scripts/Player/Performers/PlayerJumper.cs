@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using TaskIvan.BonusSystem.Entities;
 using TaskIvan.SO;
-using TaskIvan.Utils;
+using UniRx;
 using UnityEngine;
 
 namespace TaskIvan.Player
@@ -14,8 +15,8 @@ namespace TaskIvan.Player
 		private readonly GroundChecker _groundChecker;
 		private readonly CapsuleCollider _playerCollider;
 
-		private Coroutine _jumpCoroutine;
-		private Coroutine _somersaultCoroutine;
+		private IDisposable _jumpDisposable;
+		private Tweener _somersaultTweener;
 		private int _jumpCount;
 
 		public PlayerJumper(PlayerEntity playerEntity, GameData data)
@@ -28,7 +29,7 @@ namespace TaskIvan.Player
 
 		public void Jump(JumpBonus bonus)
 		{
-			if (_jumpCoroutine != null)
+			if (_jumpDisposable != null)
 			{
 				if (bonus == null)
 					return;
@@ -47,21 +48,25 @@ namespace TaskIvan.Player
 
 		public void Dispose()
 		{
-			CoroutineHolder.Instance.Stop(_jumpCoroutine);
-			CoroutineHolder.Instance.Stop(_somersaultCoroutine);
+			_jumpDisposable?.Dispose();
+			_somersaultTweener?.Kill();
 		}
 
 		private void Jump()
 		{
 			_jumpCount++;
-			_jumpCoroutine = CoroutineHolder.Instance.Play(Start());
+			_jumpDisposable = Observable.FromCoroutine(Start).Subscribe();
 		}
 
 		private void TryUseBonus()
 		{
-			if (_jumpCount < _data.MaxJumpCount && _groundChecker.IsGrounded() == false && _somersaultCoroutine == null)
+			if (_jumpCount < _data.MaxJumpCount && _groundChecker.IsGrounded() == false)
 			{
-				CoroutineHolder.Instance.Stop(_jumpCoroutine);
+				if (_somersaultTweener != null && _somersaultTweener.IsPlaying())
+					return;
+
+				_jumpDisposable?.Dispose();
+
 				Jump();
 			}
 		}
@@ -70,35 +75,17 @@ namespace TaskIvan.Player
 		{
 			_playerEntity.SelfRigidbody.AddForce(Vector3.up * _data.JumpForce, ForceMode.Impulse);
 
-			_somersaultCoroutine = CoroutineHolder.Instance.Play(Somersault());
+			_somersaultTweener = _playerCollider.transform
+				.DOLocalRotate(new Vector3(360, 0, 0), 
+					_data.SomersaultDuration,
+					RotateMode.FastBeyond360)
+				.OnKill(() => _playerCollider.transform.Rotate(new Vector3(0, 0, 0)));
 
 			yield return new WaitUntil(() => _groundChecker.IsGrounded() == false);
 			yield return new WaitUntil(() => _groundChecker.IsGrounded());
 
 			_jumpCount = 0;
-			_jumpCoroutine = null;
-		}
-
-		private IEnumerator Somersault()
-		{
-			var wait = new WaitForFixedUpdate();
-
-			var currentTime = 0f;
-
-			while (currentTime <= _data.SomersaultDuration)
-			{
-				var angle = Mathf.Lerp(0, 360, currentTime / _data.SomersaultDuration);
-
-				_playerCollider.transform.Rotate(new Vector3(angle, 0, 0));
-
-				currentTime += Time.fixedDeltaTime;
-
-				yield return wait;
-			}
-
-			_playerCollider.transform.Rotate(new Vector3(0, 0, 0));
-
-			_somersaultCoroutine = null;
+			_jumpDisposable = null;
 		}
 	}
 }

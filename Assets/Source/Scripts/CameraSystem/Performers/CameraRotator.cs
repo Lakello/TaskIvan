@@ -1,7 +1,5 @@
 using TaskIvan.Level.Entities;
-using TaskIvan.Player;
 using TaskIvan.SO;
-using TaskIvan.Utils;
 using UnityEngine;
 
 namespace TaskIvan.CameraSystem.Performers
