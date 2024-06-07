@@ -35,13 +35,13 @@ namespace TaskIvan.Player
 
 				TryUseBonus();
 			}
-			
+
 			if (_jumpCount >= _data.MaxJumpCount)
 				return;
-			
+
 			if (_groundChecker.IsGrounded() == false)
 				return;
-			
+
 			Jump();
 		}
 
@@ -56,19 +56,16 @@ namespace TaskIvan.Player
 			_jumpCount++;
 			_jumpCoroutine = CoroutineHolder.Instance.Play(Start());
 		}
-		
-		private bool TryUseBonus()
+
+		private void TryUseBonus()
 		{
 			if (_jumpCount < _data.MaxJumpCount && _groundChecker.IsGrounded() == false && _somersaultCoroutine == null)
 			{
 				CoroutineHolder.Instance.Stop(_jumpCoroutine);
 				Jump();
-				return true;
 			}
-
-			return false;
 		}
-		
+
 		private IEnumerator Start()
 		{
 			_playerEntity.SelfRigidbody.AddForce(Vector3.up * _data.JumpForce, ForceMode.Impulse);
@@ -77,7 +74,7 @@ namespace TaskIvan.Player
 
 			yield return new WaitUntil(() => _groundChecker.IsGrounded() == false);
 			yield return new WaitUntil(() => _groundChecker.IsGrounded());
-			
+
 			_jumpCount = 0;
 			_jumpCoroutine = null;
 		}
@@ -95,12 +92,12 @@ namespace TaskIvan.Player
 				_playerCollider.transform.Rotate(new Vector3(angle, 0, 0));
 
 				currentTime += Time.fixedDeltaTime;
-				
+
 				yield return wait;
 			}
 
 			_playerCollider.transform.Rotate(new Vector3(0, 0, 0));
-			
+
 			_somersaultCoroutine = null;
 		}
 	}
