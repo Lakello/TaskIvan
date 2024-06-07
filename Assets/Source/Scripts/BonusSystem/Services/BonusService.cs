@@ -38,8 +38,6 @@ namespace TaskIvan.BonusSystem.Services
 
 		private void OnCollected(Bonus bonus)
 		{
-			bonus.gameObject.SetActive(false);
-
 			if (_bonuses.ContainsKey(bonus.GetType()))
 			{
 				var effectDisposable = _bonuses[bonus.GetType()].Item2;
@@ -50,21 +48,12 @@ namespace TaskIvan.BonusSystem.Services
 			{
 				_bonuses.Add(bonus.GetType(), (bonus, Observable.FromCoroutine(() => PlayEffect(bonus)).Subscribe()));
 			}
-
-			Observable.FromCoroutine(() => BonusCooldown(bonus));
 		}
 
 		private IEnumerator PlayEffect(Bonus bonus)
 		{
 			yield return new WaitForSeconds(bonus.Duration);
 			_bonuses.Remove(bonus.GetType());
-		}
-
-		private IEnumerator BonusCooldown(Bonus bonus)
-		{
-			yield return new WaitForSeconds(bonus.Cooldown);
-
-			bonus.gameObject.SetActive(true);
 		}
 	}
 }

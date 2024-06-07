@@ -9,6 +9,7 @@ namespace TaskIvan.Extensions
 		{
 			foreach (T obj in source)
 				action(obj);
+
 			return source;
 		}
 	}

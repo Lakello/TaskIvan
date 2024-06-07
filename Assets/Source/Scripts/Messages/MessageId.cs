@@ -5,6 +5,6 @@ namespace TaskIvan.Messages
 		HeightChanged,
 		SpeedChanged,
 		SpeedBonusChanged,
-		HeightBonusChanged,
+		JumpBonusChanged,
 	}
 }

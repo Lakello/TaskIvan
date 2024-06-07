@@ -48,9 +48,10 @@ namespace TaskIvan.Player
 			if (direction == Vector2.zero)
 			{
 				_speedPublisher.Publish(0);
+
 				return;
 			}
-			
+
 			_mover.Move(direction, _bonusService.TryGetBonus<SpeedBonus>());
 			_rotator.Rotate();
 			_speedPublisher.Publish(_mover.CurrentSpeed);

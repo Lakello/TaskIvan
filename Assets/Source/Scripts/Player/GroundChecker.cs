@@ -1,4 +1,3 @@
-using TaskIvan.Extensions;
 using UnityEngine;
 
 namespace TaskIvan.Player
@@ -15,7 +14,7 @@ namespace TaskIvan.Player
 			_playerCollider = playerCollider;
 			_hits = new RaycastHit[2];
 		}
-		
+
 		public bool IsGrounded()
 		{
 			var count = Physics.CapsuleCastNonAlloc(

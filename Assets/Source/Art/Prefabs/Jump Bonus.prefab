@@ -100,7 +100,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -121,4 +121,6 @@ MonoBehaviour:
   _duration: 10
   _cooldown: 5
   _rotateSpeed: 100
-  IsUsed: 0
+  _publishMessageId: 3
+  _collectedMaxHeight: 5
+  _collectedDuration: 1

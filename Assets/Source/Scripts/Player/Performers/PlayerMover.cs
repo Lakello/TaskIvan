@@ -25,9 +25,9 @@ namespace TaskIvan.Player
 			var multiplier = speedBonus == null ? 1 : speedBonus.Multiplier;
 
 			CurrentSpeed = _data.MoveSpeed * multiplier;
-			
+
 			_playerEntity.SelfRigidbody.MovePosition(
-				_playerEntity.SelfRigidbody.position + 
+				_playerEntity.SelfRigidbody.position +
 				(moveDirection * CurrentSpeed * Time.fixedDeltaTime));
 		}
 	}

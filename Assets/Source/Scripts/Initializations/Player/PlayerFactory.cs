@@ -24,7 +24,7 @@ namespace TaskIvan.Initializations.Player
 
 			var bonusService = new BonusService(playerEntity);
 			_controlService = new PlayerControlService(init.InputService, playerEntity, _data, mainCamera, bonusService);
-			
+
 			return playerEntity;
 		}
 

@@ -5,15 +5,16 @@ using UnityEngine;
 
 namespace TaskIvan.UI.Player
 {
-	public class SpeedView : MonoBehaviour
+	public class PlayerInfoView : MonoBehaviour
 	{
 		[SerializeField] private TMP_Text _output;
+		[SerializeField] private MessageId _targetMessageId;
 
 		private void Awake()
 		{
 			MessageBroker.Default
 				.Receive<Message<float>>()
-				.Where(message => message.Id == MessageId.SpeedChanged)
+				.Where(message => message.Id == _targetMessageId)
 				.Subscribe(message => Show(message.Data))
 				.AddTo(this);
 		}

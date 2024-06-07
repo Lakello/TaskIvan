@@ -9,7 +9,7 @@ namespace TaskIvan.Player.Info
 	{
 		private readonly PlayerEntity _playerEntity;
 		private readonly IDisposable _publishDisposable;
-		
+
 		public HeightPublisher(PlayerEntity playerEntity)
 		{
 			_playerEntity = playerEntity;

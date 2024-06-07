@@ -23,7 +23,7 @@ namespace TaskIvan.CameraSystem.Performers
 		{
 			_vertical -= _data.MouseVerticalSensitivity * delta.y * Time.deltaTime;
 			_horizontal += _data.MouseHorizontalSensitivity * delta.x * Time.deltaTime;
-			
+
 			_vertical = Mathf.Clamp(_vertical, _data.MinMaxVerticalCameraAngle.x, _data.MinMaxVerticalCameraAngle.y);
 			_cameraPoint.transform.eulerAngles = new Vector3(_vertical, _horizontal, 0);
 		}
